@@ -1,6 +1,6 @@
 {
  "title": "Rocky Course II",
- "updated": "2026-11-18T13:54:36.322Z",
+ "updated": "2026-11-18T14:07:26.088Z",
  "members": [
   {
    "id": 1,
@@ -284,7 +284,7 @@
   },
   {
    "id": 41,
-   "name": "Madam Matilda Appiah",
+   "name": "ASP Madam Matilda Appiah",
    "amount": 100,
    "status": "Paid",
    "rating": "Exceptional / Top Tier"
@@ -513,5 +513,6 @@
    "status": "Paid",
    "rating": "Below Average / Fair"
   }
- ]
+ ],
+ "expenditure": 3018
 }
