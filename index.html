@@ -1,0 +1,243 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Rocky Course II · Voluntary Contributions</title>
+<meta property="og:title" content="Rocky Course II – Contribution Tracker">
+<meta property="og:description" content="Search your name and check your contribution status.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;600;800&display=swap" rel="stylesheet">
+<style>
+:root{--ink:#10261f;--mute:#5b6e66;--line:#d9e2dd;--bg:#f2f5f3;--card:#fff;--green:#0e5a43;--gold:#e3a72f;--red:#b4402f;--paid:#dff1e6;--unpaid:#f8e4df}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.45 "Schibsted Grotesk",system-ui,sans-serif;padding:env(safe-area-inset-top) 0 90px}
+.wrap{max-width:860px;margin:0 auto;padding:0 16px}
+header{padding:28px 0 8px}
+h1{font-size:clamp(2rem,7vw,3.2rem);line-height:1;margin:0;font-weight:800;letter-spacing:-.03em}
+.sub{color:var(--mute);margin:6px 0 0}
+.stats{display:flex;gap:28px;flex-wrap:wrap;margin:22px 0 12px}
+.stats b{display:block;font-size:1.9rem;font-weight:800;letter-spacing:-.02em;line-height:1.1}
+.stats span{color:var(--mute);font-size:.9rem}
+.blocks{display:flex;flex-wrap:wrap;gap:4px;margin-bottom:6px}
+.blocks i{width:calc((100% - 4*35px)/36);min-width:14px;flex:1 0 14px;max-width:22px;height:22px;border-radius:4px;background:#cfd9d4;cursor:pointer}
+.blocks i.p{background:var(--gold)}
+.legend{font-size:.82rem;color:var(--mute);margin-bottom:18px}
+.bar{display:flex;gap:8px;flex-wrap:wrap;position:sticky;top:0;background:var(--bg);padding:10px 0;z-index:3}
+input,select,button{font:inherit;color:inherit}
+#q{flex:1 1 220px;padding:12px 14px;border:1.5px solid var(--line);border-radius:10px;background:var(--card)}
+#q:focus,select:focus,.amt:focus,button:focus-visible{outline:3px solid var(--gold);outline-offset:1px}
+.chips{display:flex;gap:6px}
+.chips button{padding:10px 14px;border:1.5px solid var(--line);border-radius:10px;background:var(--card);cursor:pointer}
+.chips button[aria-pressed=true]{background:var(--green);border-color:var(--green);color:#fff}
+.list{background:var(--card);border:1px solid var(--line);border-radius:14px;overflow:hidden}
+.row{display:grid;grid-template-columns:2.2rem 1fr 110px 110px 190px;gap:10px;align-items:center;padding:11px 14px;border-top:1px solid var(--line)}
+.row:first-child{border-top:0}
+.row.head{font-size:.85rem;color:var(--mute);background:#f8faf9;font-weight:600}
+.no{color:var(--mute);font-variant-numeric:tabular-nums}
+.nm{font-weight:600}
+.pill{display:inline-block;padding:3px 11px;border-radius:99px;font-size:.88rem;font-weight:600}
+.pill.paid{background:var(--paid);color:var(--green)}
+.pill.unpaid{background:var(--unpaid);color:var(--red)}
+.rt{color:var(--mute);font-size:.92rem}
+select,.amt{width:100%;padding:8px;border:1.5px solid var(--line);border-radius:8px;background:#fff}
+.row.foot{background:#f8faf9;border-top:2px solid var(--ink);font-weight:800}
+.row.foot .am{font-variant-numeric:tabular-nums}
+.empty{padding:28px;text-align:center;color:var(--mute)}
+footer{color:var(--mute);font-size:.85rem;margin:16px 0}
+.link{background:none;border:0;color:var(--green);text-decoration:underline;cursor:pointer;padding:0}
+.save{position:fixed;left:0;right:0;bottom:0;background:var(--ink);color:#fff;padding:12px 16px calc(12px + env(safe-area-inset-bottom));display:none;z-index:5}
+.save.on{display:block}
+.save .in{max-width:860px;margin:0 auto;display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.save .msg{flex:1}
+.btn{padding:10px 16px;border-radius:10px;border:0;background:var(--gold);color:#241a00;font-weight:700;cursor:pointer}
+.btn.alt{background:transparent;color:#fff;border:1.5px solid #ffffff66}
+dialog{border:0;border-radius:14px;padding:22px;max-width:420px;width:calc(100% - 32px)}
+dialog::backdrop{background:#0008}
+dialog label{display:block;font-size:.88rem;color:var(--mute);margin:12px 0 4px}
+dialog input{width:100%;padding:10px;border:1.5px solid var(--line);border-radius:8px}
+dialog p{font-size:.88rem;color:var(--mute)}
+.adminbadge{background:var(--gold);color:#241a00;border-radius:6px;padding:1px 8px;font-size:.8rem;font-weight:700}
+@media(max-width:700px){
+ .row{grid-template-columns:1.8rem 1fr auto;grid-template-areas:"n m s" ". a r"}
+ .row.head{display:none}
+ .row.foot .st,.row.foot .rt{display:none}
+ .row.foot{grid-template-columns:1.8rem 1fr auto!important;grid-template-areas:"n m a"!important}
+ .row.foot .am{color:var(--ink)!important}
+ .row .no{grid-area:n}.row .nm{grid-area:m}.row .st{grid-area:s}.row .am{grid-area:a;color:var(--mute)}.row .rt{grid-area:r;text-align:right}
+ .edit .row{grid-template-columns:1.8rem 1fr;grid-template-areas:"n m" ". a" ". s" ". r"}
+ .edit .row .rt{text-align:left}
+}
+@media(prefers-reduced-motion:no-preference){.blocks i{transition:transform .12s}.blocks i:hover{transform:scale(1.25)}}
+</style>
+</head>
+<body>
+<div class="wrap">
+ <header>
+  <h1>Rocky Course II</h1>
+  <p class="sub">Voluntary contribution tracker <span id="adm"></span></p>
+  <div class="stats">
+   <div><b id="exp">GHS 0</b><span>total to be contributed</span></div>
+   <div><b id="tot">GHS 0</b><span>collected (paid)</span></div>
+   <div><b id="out2">GHS 0</b><span>still outstanding</span></div>
+   <div><b id="cnt">0 of 0</b><span>members have paid</span></div>
+  </div>
+  <div class="blocks" id="blocks" aria-label="One block per member; gold means paid"></div>
+  <div class="legend">Each block is one member. Gold = paid. Tap a block to find that person.</div>
+ </header>
+ <div class="bar">
+  <input id="q" type="search" placeholder="Search by name…" autocomplete="off" aria-label="Search members by name">
+  <div class="chips" id="chips">
+   <button data-f="all" aria-pressed="true">All</button>
+   <button data-f="Paid" aria-pressed="false">Paid</button>
+   <button data-f="Not paid" aria-pressed="false">Not paid</button>
+  </div>
+ </div>
+ <div class="list" id="list" aria-live="polite"></div>
+ <footer><span id="upd"></span> · <button class="link" id="adminBtn">Admin</button></footer>
+</div>
+
+<div class="save" id="save"><div class="in">
+ <span class="msg" id="smsg"></span>
+ <button class="btn alt" id="dl">Download JSON</button>
+ <button class="btn" id="go">Save to GitHub</button>
+</div></div>
+
+<dialog id="dlg">
+ <h2 style="margin:0 0 4px">Admin sign-in</h2>
+ <p>Only the group admin needs this. The token stays in this browser and is never shown to members.</p>
+ <label for="repo">GitHub repository (owner/name)</label><input id="repo" placeholder="your-username/rocky-contributions">
+ <label for="tok">Personal access token</label><input id="tok" type="password" autocomplete="off" placeholder="github_pat_…">
+ <div style="display:flex;gap:8px;margin-top:16px;justify-content:flex-end">
+  <button class="btn alt" style="color:var(--ink);border-color:var(--line)" id="out">Sign out</button>
+  <button class="btn" id="in">Sign in</button>
+ </div>
+</dialog>
+
+<script>
+const RATINGS=["Very Poor","Below Average / Fair","Average / Good","Very Good","Exceptional / Top Tier"];
+const PATH="data.json", BRANCH="main";
+let cfg=detect(), data={members:[]}, filter="all", dirty=false;
+const $=id=>document.getElementById(id);
+const store={get:k=>{try{return localStorage.getItem(k)}catch(e){return null}},set:(k,v)=>{try{localStorage.setItem(k,v)}catch(e){}},del:k=>{try{localStorage.removeItem(k)}catch(e){}}};
+const token=()=>store.get("rk_token"), isAdmin=()=>!!token();
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const fmt=n=>"GHS "+Number(n).toLocaleString("en-GH");
+
+function detect(){
+  const saved=store.get("rk_repo");
+  if(saved&&saved.includes("/"))return saved;
+  if(location.hostname.endsWith(".github.io")){
+    const repo=location.pathname.split("/")[1];
+    if(repo)return location.hostname.split(".")[0]+"/"+repo;
+  }
+  return "";
+}
+const api=()=>`https://api.github.com/repos/${cfg}/contents/${PATH}`;
+const dec=b=>new TextDecoder().decode(Uint8Array.from(atob(b.replace(/\s/g,"")),c=>c.charCodeAt(0)));
+const enc=s=>{const u=new TextEncoder().encode(s);let b="";u.forEach(c=>b+=String.fromCharCode(c));return btoa(b)};
+
+async function load(){
+  let loaded=false;
+  if(cfg){
+    try{
+      const h={Accept:"application/vnd.github+json"};if(isAdmin())h.Authorization="Bearer "+token();
+      const r=await fetch(api()+"?ref="+BRANCH+"&t="+Date.now(),{headers:h});
+      if(r.ok){data=JSON.parse(dec((await r.json()).content));loaded=true}
+    }catch(e){}
+  }
+  if(!loaded){
+    try{const r=await fetch(PATH+"?t="+Date.now());data=await r.json()}
+    catch(e){$("list").innerHTML='<div class="empty">Could not load data. Please refresh.</div>';return}
+  }
+  render();
+}
+
+const total=()=>data.members.reduce((s,x)=>s+(Number(x.amount)||0),0);
+function stats(){
+  const m=data.members, paid=m.filter(x=>x.status==="Paid");
+  const sum=a=>a.reduce((s,x)=>s+(Number(x.amount)||0),0), all=sum(m), got=sum(paid);
+  if($("ftot"))$("ftot").textContent=fmt(all);
+  $("exp").textContent=fmt(all);$("tot").textContent=fmt(got);$("out2").textContent=fmt(all-got);
+  $("cnt").textContent=paid.length+" of "+m.length;
+  $("blocks").innerHTML=m.map(x=>`<i class="${x.status==="Paid"?"p":""}" title="${esc(x.name)}" data-n="${esc(x.name)}"></i>`).join("");
+  $("upd").textContent=data.updated?"Last updated "+new Date(data.updated).toLocaleString("en-GB",{dateStyle:"medium",timeStyle:"short"}):"";
+}
+
+function render(){
+  stats();
+  const q=$("q").value.trim().toLowerCase();
+  const rows=data.members.filter(x=>(filter==="all"||x.status===filter)&&x.name.toLowerCase().includes(q));
+  const ad=isAdmin();
+  $("adm").innerHTML=ad?'<span class="adminbadge">Admin mode</span>':"";
+  $("list").className="list"+(ad?" edit":"");
+  let h='<div class="row head"><span>#</span><span>Name</span><span>Amount</span><span>Status</span><span>Payment rating</span></div>';
+  if(!rows.length)h+='<div class="empty">No member found'+(q?' for “'+esc(q)+'”':"")+'.</div>';
+  for(const x of rows){
+    const paid=x.status==="Paid";
+    if(ad){
+      h+=`<div class="row" data-id="${x.id}"><span class="no">${x.id}</span><span class="nm">${esc(x.name)}</span>
+      <span class="am"><input class="amt" type="number" min="0" step="any" inputmode="decimal" placeholder="GHS" value="${x.amount??""}" aria-label="Amount for ${esc(x.name)}"></span>
+      <span class="st"><select class="ss" aria-label="Status for ${esc(x.name)}"><option${paid?" selected":""}>Paid</option><option${paid?"":" selected"}>Not paid</option></select></span>
+      <span class="rt"><select class="rs" aria-label="Rating for ${esc(x.name)}"><option value="">Not rated</option>${RATINGS.map(r=>`<option${x.rating===r?" selected":""}>${r}</option>`).join("")}</select></span></div>`;
+    }else{
+      h+=`<div class="row"><span class="no">${x.id}</span><span class="nm">${esc(x.name)}</span>
+      <span class="am">${x.amount!=null&&x.amount!==""?fmt(x.amount):"–"}</span>
+      <span class="st"><span class="pill ${paid?"paid":"unpaid"}">${paid?"Paid":"Not paid"}</span></span>
+      <span class="rt">${esc(x.rating||"Not rated")}</span></div>`;
+    }
+  }
+  h+=`<div class="row foot"><span></span><span class="nm">Total of all ${data.members.length} members</span><span class="am" id="ftot">${fmt(total())}</span><span class="st"></span><span class="rt"></span></div>`;
+  $("list").innerHTML=h;
+}
+
+function mark(){dirty=true;$("save").classList.add("on");$("smsg").textContent="You have unsaved changes.";stats()}
+$("list").addEventListener("input",e=>{
+  const row=e.target.closest(".row[data-id]");if(!row)return;
+  const m=data.members.find(x=>x.id==row.dataset.id);
+  if(e.target.classList.contains("amt"))m.amount=e.target.value===""?null:Number(e.target.value);
+  else if(e.target.classList.contains("ss"))m.status=e.target.value;
+  else if(e.target.classList.contains("rs"))m.rating=e.target.value;
+  mark();
+});
+$("q").addEventListener("input",render);
+$("chips").addEventListener("click",e=>{
+  const b=e.target.closest("button");if(!b)return;filter=b.dataset.f;
+  [...$("chips").children].forEach(c=>c.setAttribute("aria-pressed",c===b));render();
+});
+$("blocks").addEventListener("click",e=>{const n=e.target.dataset.n;if(n){$("q").value=n;filter="all";render();$("list").scrollIntoView({behavior:"smooth"})}});
+
+$("adminBtn").onclick=()=>{$("repo").value=cfg;$("tok").value="";$("dlg").showModal()};
+$("in").onclick=async()=>{
+  const r=$("repo").value.trim(),t=$("tok").value.trim();
+  if(!r.includes("/")||!t){alert("Enter the repository (owner/name) and your token.");return}
+  const ok=await fetch(`https://api.github.com/repos/${r}`,{headers:{Authorization:"Bearer "+t}}).then(x=>x.ok).catch(()=>false);
+  if(!ok){alert("GitHub rejected the token or repository name. Please check both.");return}
+  store.set("rk_token",t);store.set("rk_repo",r);cfg=r;$("dlg").close();await load();
+};
+$("out").onclick=()=>{store.del("rk_token");$("dlg").close();$("save").classList.remove("on");dirty=false;load()};
+
+$("dl").onclick=()=>{
+  const a=document.createElement("a");
+  a.href=URL.createObjectURL(new Blob([JSON.stringify(data,null,1)],{type:"application/json"}));
+  a.download="data.json";a.click();
+};
+$("go").onclick=async()=>{
+  const btn=$("go");btn.disabled=true;$("smsg").textContent="Saving…";
+  try{
+    const h={Authorization:"Bearer "+token(),Accept:"application/vnd.github+json"};
+    const g=await fetch(api()+"?ref="+BRANCH,{headers:h});
+    if(!g.ok)throw new Error("Could not read the file ("+g.status+")");
+    const sha=(await g.json()).sha;
+    data.updated=new Date().toISOString();
+    const p=await fetch(api(),{method:"PUT",headers:h,body:JSON.stringify({message:"Update contributions",content:enc(JSON.stringify(data,null,1)),sha,branch:BRANCH})});
+    if(!p.ok)throw new Error("GitHub refused the save ("+p.status+"). Check the token has Contents: read & write.");
+    dirty=false;$("save").classList.remove("on");stats();
+  }catch(e){$("smsg").textContent=e.message}
+  btn.disabled=false;
+};
+window.addEventListener("beforeunload",e=>{if(dirty){e.preventDefault();e.returnValue=""}});
+load();
+</script>
+</body>
+</html>

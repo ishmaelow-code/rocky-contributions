@@ -1,0 +1,510 @@
+{
+ "title": "Rocky Course II",
+ "updated": "2026-11-18T10:02:24.324988Z",
+ "members": [
+  {
+   "id": 1,
+   "name": "Ishmael Azagu",
+   "amount": 100,
+   "status": "Paid",
+   "rating": ""
+  },
+  {
+   "id": 2,
+   "name": "Joyce Owusu Ansah",
+   "amount": 200,
+   "status": "Not paid",
+   "rating": ""
+  },
+  {
+   "id": 3,
+   "name": "Mr. Kenneth Antwi",
+   "amount": null,
+   "status": "Not paid",
+   "rating": ""
+  },
+  {
+   "id": 4,
+   "name": "Patience Ayeh",
+   "amount": null,
+   "status": "Not paid",
+   "rating": ""
+  },
+  {
+   "id": 5,
+   "name": "Wisdom Tatra",
+   "amount": null,
+   "status": "Not paid",
+   "rating": ""
+  },
+  {
+   "id": 6,
+   "name": "Dora Asante",
+   "amount": null,
+   "status": "Not paid",
+   "rating": ""
+  },
+  {
+   "id": 7,
+   "name": "Samuel Kyei",
+   "amount": null,
+   "status": "Not paid",
+   "rating": ""
+  },
+  {
+   "id": 8,
+   "name": "Winifred Ahulu",
+   "amount": null,
+   "status": "Not paid",
+   "rating": ""
+  },
+  {
+   "id": 9,
+   "name": "Okumah Samuel",
+   "amount": null,
+   "status": "Not paid",
+   "rating": ""
+  },
+  {
+   "id": 10,
+   "name": "Eunice Amuzu",
+   "amount": null,
+   "status": "Not paid",
+   "rating": ""
+  },
+  {
+   "id": 11,
+   "name": "Joseph Gyamfi",
+   "amount": null,
+   "status": "Not paid",
+   "rating": ""
+  },
+  {
+   "id": 12,
+   "name": "Patricia Amakwa",
+   "amount": null,
+   "status": "Not paid",
+   "rating": ""
+  },
+  {
+   "id": 13,
+   "name": "Richard Odoom",
+   "amount": null,
+   "status": "Not paid",
+   "rating": ""
+  },
+  {
+   "id": 14,
+   "name": "Narh-Korley Sackey",
+   "amount": null,
+   "status": "Not paid",
+   "rating": ""
+  },
+  {
+   "id": 15,
+   "name": "Richard Larbi",
+   "amount": null,
+   "status": "Not paid",
+   "rating": ""
+  },
+  {
+   "id": 16,
+   "name": "Francis Agbedor",
+   "amount": null,
+   "status": "Not paid",
+   "rating": ""
+  },
+  {
+   "id": 17,
+   "name": "Monica Adongo",
+   "amount": null,
+   "status": "Not paid",
+   "rating": ""
+  },
+  {
+   "id": 18,
+   "name": "George Amankwah",
+   "amount": null,
+   "status": "Not paid",
+   "rating": ""
+  },
+  {
+   "id": 19,
+   "name": "Charles Danquah",
+   "amount": null,
+   "status": "Not paid",
+   "rating": ""
+  },
+  {
+   "id": 20,
+   "name": "Kwame Adebiete",
+   "amount": null,
+   "status": "Not paid",
+   "rating": ""
+  },
+  {
+   "id": 21,
+   "name": "Joseph Ayitey",
+   "amount": null,
+   "status": "Not paid",
+   "rating": ""
+  },
+  {
+   "id": 22,
+   "name": "Stephen Afranie",
+   "amount": null,
+   "status": "Not paid",
+   "rating": ""
+  },
+  {
+   "id": 23,
+   "name": "Dominic Anamsi",
+   "amount": null,
+   "status": "Not paid",
+   "rating": ""
+  },
+  {
+   "id": 24,
+   "name": "Catherine Adoctar",
+   "amount": null,
+   "status": "Not paid",
+   "rating": ""
+  },
+  {
+   "id": 25,
+   "name": "Juliet Yeboah",
+   "amount": null,
+   "status": "Not paid",
+   "rating": ""
+  },
+  {
+   "id": 26,
+   "name": "Nora Oteng-Adu",
+   "amount": null,
+   "status": "Not paid",
+   "rating": ""
+  },
+  {
+   "id": 27,
+   "name": "Daniel Nortei Yeboah",
+   "amount": null,
+   "status": "Not paid",
+   "rating": ""
+  },
+  {
+   "id": 28,
+   "name": "Lawrencia Nyavor",
+   "amount": null,
+   "status": "Not paid",
+   "rating": ""
+  },
+  {
+   "id": 29,
+   "name": "Gifty Acheampong",
+   "amount": null,
+   "status": "Not paid",
+   "rating": ""
+  },
+  {
+   "id": 30,
+   "name": "Osei Yaw Takyi",
+   "amount": null,
+   "status": "Not paid",
+   "rating": ""
+  },
+  {
+   "id": 31,
+   "name": "Famous Kofi Dogbo",
+   "amount": null,
+   "status": "Not paid",
+   "rating": ""
+  },
+  {
+   "id": 32,
+   "name": "Juliet A. Akani",
+   "amount": null,
+   "status": "Not paid",
+   "rating": ""
+  },
+  {
+   "id": 33,
+   "name": "Habiba Hammond",
+   "amount": null,
+   "status": "Not paid",
+   "rating": ""
+  },
+  {
+   "id": 34,
+   "name": "Thomas Abugrago",
+   "amount": null,
+   "status": "Not paid",
+   "rating": ""
+  },
+  {
+   "id": 35,
+   "name": "Agyei Tweneboah",
+   "amount": null,
+   "status": "Not paid",
+   "rating": ""
+  },
+  {
+   "id": 36,
+   "name": "Gabriel Nti Boakye",
+   "amount": null,
+   "status": "Not paid",
+   "rating": ""
+  },
+  {
+   "id": 37,
+   "name": "Imoro Ayuba",
+   "amount": null,
+   "status": "Not paid",
+   "rating": ""
+  },
+  {
+   "id": 38,
+   "name": "Wisdom Asem",
+   "amount": null,
+   "status": "Not paid",
+   "rating": ""
+  },
+  {
+   "id": 39,
+   "name": "Ruth Fobi",
+   "amount": null,
+   "status": "Not paid",
+   "rating": ""
+  },
+  {
+   "id": 40,
+   "name": "Mark Gyan",
+   "amount": null,
+   "status": "Not paid",
+   "rating": ""
+  },
+  {
+   "id": 41,
+   "name": "ASP Madam Matilda Appiah",
+   "amount": null,
+   "status": "Not paid",
+   "rating": ""
+  },
+  {
+   "id": 42,
+   "name": "Collins Osei",
+   "amount": null,
+   "status": "Not paid",
+   "rating": ""
+  },
+  {
+   "id": 43,
+   "name": "Prince Antoh",
+   "amount": null,
+   "status": "Not paid",
+   "rating": ""
+  },
+  {
+   "id": 44,
+   "name": "Michael Asiedu Pope",
+   "amount": null,
+   "status": "Not paid",
+   "rating": ""
+  },
+  {
+   "id": 45,
+   "name": "Angela Lucky Acheampong",
+   "amount": null,
+   "status": "Not paid",
+   "rating": ""
+  },
+  {
+   "id": 46,
+   "name": "Martin Kyere",
+   "amount": null,
+   "status": "Not paid",
+   "rating": ""
+  },
+  {
+   "id": 47,
+   "name": "Haford Sampah",
+   "amount": null,
+   "status": "Not paid",
+   "rating": ""
+  },
+  {
+   "id": 48,
+   "name": "Maureen Ansah",
+   "amount": null,
+   "status": "Not paid",
+   "rating": ""
+  },
+  {
+   "id": 49,
+   "name": "Jacob Ndolbe",
+   "amount": null,
+   "status": "Not paid",
+   "rating": ""
+  },
+  {
+   "id": 50,
+   "name": "Nicholas Bonti",
+   "amount": null,
+   "status": "Not paid",
+   "rating": ""
+  },
+  {
+   "id": 51,
+   "name": "Emmanuel Anum Adjei",
+   "amount": null,
+   "status": "Not paid",
+   "rating": ""
+  },
+  {
+   "id": 52,
+   "name": "Samuel Pobee",
+   "amount": null,
+   "status": "Not paid",
+   "rating": ""
+  },
+  {
+   "id": 53,
+   "name": "Margaret Aniwaa",
+   "amount": null,
+   "status": "Not paid",
+   "rating": ""
+  },
+  {
+   "id": 54,
+   "name": "Naomi Anglow",
+   "amount": null,
+   "status": "Not paid",
+   "rating": ""
+  },
+  {
+   "id": 55,
+   "name": "Fred Asante",
+   "amount": null,
+   "status": "Not paid",
+   "rating": ""
+  },
+  {
+   "id": 56,
+   "name": "Victoria Adwoa Welaga",
+   "amount": null,
+   "status": "Not paid",
+   "rating": ""
+  },
+  {
+   "id": 57,
+   "name": "Doris Ansah",
+   "amount": null,
+   "status": "Not paid",
+   "rating": ""
+  },
+  {
+   "id": 58,
+   "name": "Kwame Bonsu",
+   "amount": null,
+   "status": "Not paid",
+   "rating": ""
+  },
+  {
+   "id": 59,
+   "name": "Eric Abban",
+   "amount": null,
+   "status": "Not paid",
+   "rating": ""
+  },
+  {
+   "id": 60,
+   "name": "Sylvia Dzigbordi Negble",
+   "amount": null,
+   "status": "Not paid",
+   "rating": ""
+  },
+  {
+   "id": 61,
+   "name": "Daniel Asirifi",
+   "amount": null,
+   "status": "Not paid",
+   "rating": ""
+  },
+  {
+   "id": 62,
+   "name": "Kuma Kofi Sammy",
+   "amount": null,
+   "status": "Not paid",
+   "rating": ""
+  },
+  {
+   "id": 63,
+   "name": "Martin Ababio",
+   "amount": null,
+   "status": "Not paid",
+   "rating": ""
+  },
+  {
+   "id": 64,
+   "name": "Cynthia Adu",
+   "amount": null,
+   "status": "Not paid",
+   "rating": ""
+  },
+  {
+   "id": 65,
+   "name": "Anthony Gyasi Baafour",
+   "amount": null,
+   "status": "Not paid",
+   "rating": ""
+  },
+  {
+   "id": 66,
+   "name": "Victor Doe",
+   "amount": null,
+   "status": "Not paid",
+   "rating": ""
+  },
+  {
+   "id": 67,
+   "name": "Elizabeth Peasah",
+   "amount": null,
+   "status": "Not paid",
+   "rating": ""
+  },
+  {
+   "id": 68,
+   "name": "Dotsey Agbehiadzie",
+   "amount": null,
+   "status": "Not paid",
+   "rating": ""
+  },
+  {
+   "id": 69,
+   "name": "Osei Kwasi Prince",
+   "amount": null,
+   "status": "Not paid",
+   "rating": ""
+  },
+  {
+   "id": 70,
+   "name": "Afeamenyo Louis",
+   "amount": null,
+   "status": "Not paid",
+   "rating": ""
+  },
+  {
+   "id": 71,
+   "name": "Samuel Ndego",
+   "amount": null,
+   "status": "Not paid",
+   "rating": ""
+  },
+  {
+   "id": 72,
+   "name": "Tenu James",
+   "amount": null,
+   "status": "Not paid",
+   "rating": ""
+  }
+ ]
+}
