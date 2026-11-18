@@ -1,6 +1,6 @@
 {
  "title": "Rocky Course II",
- "updated": "2026-11-18T14:40:04.379Z",
+ "updated": "2026-11-18T14:43:15.286Z",
  "members": [
   {
    "id": 1,
@@ -532,7 +532,7 @@
    "name": "George Konadu",
    "amount": null,
    "status": "Not paid",
-   "rating": ""
+   "rating": "Very Poor"
   },
   {
    "id": 77,
@@ -551,9 +551,9 @@
   {
    "id": 79,
    "name": "Ernest Ofosuhene",
-   "amount": null,
-   "status": "Not paid",
-   "rating": ""
+   "amount": 100,
+   "status": "Paid",
+   "rating": "Very Good"
   }
  ],
  "expenditure": 3018
