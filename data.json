@@ -1,6 +1,6 @@
 {
  "title": "Rocky Course II",
- "updated": "2026-11-18T14:43:15.286Z",
+ "updated": "2026-11-18T14:46:29.141Z",
  "members": [
   {
    "id": 1,
@@ -112,7 +112,7 @@
    "name": "Francis Agbedor",
    "amount": null,
    "status": "Not paid",
-   "rating": "Below Average / Fair"
+   "rating": "Very Poor"
   },
   {
    "id": 17,
@@ -203,7 +203,7 @@
    "name": "Gifty Acheampong",
    "amount": null,
    "status": "Not paid",
-   "rating": ""
+   "rating": "Very Good"
   },
   {
    "id": 30,
@@ -504,7 +504,7 @@
    "name": "Tenu James",
    "amount": null,
    "status": "Not paid",
-   "rating": "Very Poor"
+   "rating": "Below Average / Fair"
   },
   {
    "id": 73,
@@ -554,6 +554,13 @@
    "amount": 100,
    "status": "Paid",
    "rating": "Very Good"
+  },
+  {
+   "id": 80,
+   "name": "Emmanuel Agbewoley",
+   "amount": null,
+   "status": "Not paid",
+   "rating": "Very Poor"
   }
  ],
  "expenditure": 3018
