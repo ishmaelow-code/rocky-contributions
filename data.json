@@ -1,6 +1,6 @@
 {
  "title": "Rocky Course II",
- "updated": "2026-11-18T12:09:06.845Z",
+ "updated": "2026-11-18T12:21:10.283Z",
  "members": [
   {
    "id": 1,
@@ -76,7 +76,7 @@
    "id": 11,
    "name": "Joseph Gyamfi",
    "amount": 100,
-   "status": "Not paid",
+   "status": "Paid",
    "rating": "Exceptional / Top Tier"
   },
   {
