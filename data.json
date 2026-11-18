@@ -1,6 +1,6 @@
 {
  "title": "Rocky Course II",
- "updated": "2026-11-18T14:46:29.141Z",
+ "updated": "2026-11-18T15:04:43.008Z",
  "members": [
   {
    "id": 1,
@@ -558,6 +558,13 @@
   {
    "id": 80,
    "name": "Emmanuel Agbewoley",
+   "amount": null,
+   "status": "Not paid",
+   "rating": "Very Poor"
+  },
+  {
+   "id": 81,
+   "name": "Martin Amemazior",
    "amount": null,
    "status": "Not paid",
    "rating": "Very Poor"
