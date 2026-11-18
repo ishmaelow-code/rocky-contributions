@@ -108,6 +108,7 @@ footer{color:var(--mute);font-size:.85rem;margin:16px 0}
  <div class="addbar" id="addbar" hidden>
   <input id="newname" placeholder="New member's full name" aria-label="New member name" autocomplete="off">
   <button class="btn" id="addbtn" style="background:var(--green);color:#fff">+ Add member</button>
+  <button class="rm" id="resetBtn" title="Clear all amounts for a new round of contributions">Start new round</button>
  </div>
  <div class="list" id="list" aria-live="polite"></div>
  <footer><span id="upd"></span> · <button class="link" id="adminBtn">Admin</button></footer>
@@ -236,6 +237,15 @@ $("exportBtn").onclick=()=>{
   const a=document.createElement("a");
   a.href=URL.createObjectURL(new Blob([csv],{type:"text/csv;charset=utf-8"}));
   a.download="rocky-course-ii-contributions-"+new Date().toISOString().slice(0,10)+".csv";a.click();
+};
+$("resetBtn").onclick=()=>{
+  if(!confirm("Start a new round?\n\nThis clears every amount, sets all members to Not paid and resets total expenditure to 0. Names are kept.\n\nA backup CSV of the current data will download first."))return;
+  $("exportBtn").onclick();
+  const r=confirm("Also clear all payment ratings?\n\nOK = clear ratings too\nCancel = keep the ratings");
+  data.members.forEach(x=>{x.amount=null;x.status="Not paid";if(r)x.rating=""});
+  data.expenditure=0;$("q").value="";filter="all";
+  [...$("chips").children].forEach((c,i)=>c.setAttribute("aria-pressed",i===0));
+  mark();render();$("smsg").textContent="New round ready. Click Save to GitHub to apply it for everyone.";
 };
 $("addbtn").onclick=()=>{
   const n=$("newname").value.replace(/\s+/g," ").trim();
