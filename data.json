@@ -1,6 +1,6 @@
 {
  "title": "Rocky Course II",
- "updated": "2026-11-18T17:29:42.834Z",
+ "updated": "2026-11-18T19:36:12.670Z",
  "members": [
   {
    "id": 1,
@@ -460,7 +460,7 @@
   {
    "id": 66,
    "name": "Victor Doe",
-   "amount": null,
+   "amount": 100,
    "status": "Paid",
    "rating": "Below Average / Fair"
   },
