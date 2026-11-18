@@ -41,6 +41,13 @@ input,select,button{font:inherit;color:inherit}
 .pill.unpaid{background:var(--unpaid);color:var(--red)}
 .rt{color:var(--mute);font-size:.92rem}
 select,.amt{width:100%;padding:8px;border:1.5px solid var(--line);border-radius:8px;background:#fff}
+.chipbtn{padding:10px 14px;border:1.5px solid var(--green);border-radius:10px;background:#fff;color:var(--green);font-weight:600;cursor:pointer}
+.expin{width:9.5rem;font:inherit;font-size:1.5rem;font-weight:800;padding:1px 6px;border:1.5px solid var(--gold);border-radius:8px;background:#fff}
+.rm{padding:6px 10px;border:1.5px solid #e7c3bb;background:#fff;color:var(--red);border-radius:8px;cursor:pointer;font-weight:600}
+.edit .row{grid-template-columns:2.2rem 1fr 110px 110px 190px 84px}
+.addbar{display:flex;gap:8px;margin:0 0 10px}
+.addbar input{flex:1;padding:11px 14px;border:1.5px solid var(--line);border-radius:10px;background:#fff}
+.addbar[hidden]{display:none}
 .row.foot{background:#f8faf9;border-top:2px solid var(--ink);font-weight:800}
 .row.foot .am{font-variant-numeric:tabular-nums}
 .empty{padding:28px;text-align:center;color:var(--mute)}
@@ -66,7 +73,9 @@ footer{color:var(--mute);font-size:.85rem;margin:16px 0}
  .row.foot{grid-template-columns:1.8rem 1fr auto!important;grid-template-areas:"n m a"!important}
  .row.foot .am{color:var(--ink)!important}
  .row .no{grid-area:n}.row .nm{grid-area:m}.row .st{grid-area:s}.row .am{grid-area:a;color:var(--mute)}.row .rt{grid-area:r;text-align:right}
- .edit .row{grid-template-columns:1.8rem 1fr;grid-template-areas:"n m" ". a" ". s" ". r"}
+ .edit .row{grid-template-columns:1.8rem 1fr auto;grid-template-areas:"n m x" ". a a" ". s s" ". r r"}
+ .row .x{grid-area:x}
+ .row.foot .x{display:none}
  .edit .row .rt{text-align:left}
 }
 @media(prefers-reduced-motion:no-preference){.blocks i{transition:transform .12s}.blocks i:hover{transform:scale(1.25)}}
@@ -78,9 +87,10 @@ footer{color:var(--mute);font-size:.85rem;margin:16px 0}
   <h1>Rocky Course II</h1>
   <p class="sub">Voluntary contribution tracker <span id="adm"></span> <button class="link" id="adminTop">Admin</button></p>
   <div class="stats">
-   <div><b id="exp">GHS 0</b><span>total to be contributed</span></div>
+   <div><div id="expslot"></div><span>total expenditure</span></div>
    <div><b id="tot">GHS 0</b><span>collected (paid)</span></div>
    <div><b id="out2">GHS 0</b><span>still outstanding</span></div>
+   <div><b id="bal">GHS 0</b><span>balance (collected − expenditure)</span></div>
    <div><b id="cnt">0 of 0</b><span>members have paid</span></div>
   </div>
   <div class="blocks" id="blocks" aria-label="One block per member; gold means paid"></div>
@@ -93,6 +103,11 @@ footer{color:var(--mute);font-size:.85rem;margin:16px 0}
    <button data-f="Paid" aria-pressed="false">Paid</button>
    <button data-f="Not paid" aria-pressed="false">Not paid</button>
   </div>
+  <button class="chipbtn" id="exportBtn" title="Download the list as a CSV file that opens in Excel">Export CSV</button>
+ </div>
+ <div class="addbar" id="addbar" hidden>
+  <input id="newname" placeholder="New member's full name" aria-label="New member name" autocomplete="off">
+  <button class="btn" id="addbtn" style="background:var(--green);color:#fff">+ Add member</button>
  </div>
  <div class="list" id="list" aria-live="polite"></div>
  <footer><span id="upd"></span> · <button class="link" id="adminBtn">Admin</button></footer>
@@ -161,7 +176,8 @@ function stats(){
   const m=data.members, paid=m.filter(x=>x.status==="Paid");
   const sum=a=>a.reduce((s,x)=>s+(Number(x.amount)||0),0), all=sum(m), got=sum(paid);
   if($("ftot"))$("ftot").textContent=fmt(all);
-  $("exp").textContent=fmt(all);$("tot").textContent=fmt(got);$("out2").textContent=fmt(all-got);
+  if($("expv"))$("expv").textContent=fmt(data.expenditure||0);$("tot").textContent=fmt(got);$("out2").textContent=fmt(all-got);
+  const bl=got-(Number(data.expenditure)||0);$("bal").textContent=(bl<0?"-":"")+fmt(Math.abs(bl));$("bal").style.color=bl<0?"var(--red)":"";
   $("cnt").textContent=paid.length+" of "+m.length;
   $("blocks").innerHTML=m.map(x=>`<i class="${x.status==="Paid"?"p":""}" title="${esc(x.name)}" data-n="${esc(x.name)}"></i>`).join("");
   $("upd").textContent=data.updated?"Last updated "+new Date(data.updated).toLocaleString("en-GB",{dateStyle:"medium",timeStyle:"short"}):"";
@@ -172,25 +188,27 @@ function render(){
   const q=$("q").value.trim().toLowerCase();
   const rows=data.members.filter(x=>(filter==="all"||x.status===filter)&&x.name.toLowerCase().includes(q));
   const ad=isAdmin();
+  $("addbar").hidden=!ad;
+  $("expslot").innerHTML=ad?`<input id="expin" class="expin" type="number" min="0" step="any" inputmode="decimal" placeholder="0" value="${data.expenditure||""}" aria-label="Total expenditure in GHS">`:`<b id="expv">${fmt(data.expenditure||0)}</b>`;
   $("adm").innerHTML=ad?'<span class="adminbadge">Admin mode</span>':"";
   $("list").className="list"+(ad?" edit":"");
-  let h='<div class="row head"><span>#</span><span>Name</span><span>Amount</span><span>Status</span><span>Payment rating</span></div>';
+  let h='<div class="row head"><span>#</span><span>Name</span><span>Amount</span><span>Status</span><span>Payment rating</span>'+(ad?'<span></span>':'')+'</div>';
   if(!rows.length)h+='<div class="empty">No member found'+(q?' for “'+esc(q)+'”':"")+'.</div>';
   for(const x of rows){
     const paid=x.status==="Paid";
     if(ad){
-      h+=`<div class="row" data-id="${x.id}"><span class="no">${x.id}</span><span class="nm">${esc(x.name)}</span>
+      h+=`<div class="row" data-id="${x.id}"><span class="no">${data.members.indexOf(x)+1}</span><span class="nm">${esc(x.name)}</span>
       <span class="am"><input class="amt" type="number" min="0" step="any" inputmode="decimal" placeholder="GHS" value="${x.amount??""}" aria-label="Amount for ${esc(x.name)}"></span>
       <span class="st"><select class="ss" aria-label="Status for ${esc(x.name)}"><option${paid?" selected":""}>Paid</option><option${paid?"":" selected"}>Not paid</option></select></span>
-      <span class="rt"><select class="rs" aria-label="Rating for ${esc(x.name)}"><option value="">Not rated</option>${RATINGS.map(r=>`<option${x.rating===r?" selected":""}>${r}</option>`).join("")}</select></span></div>`;
+      <span class="rt"><select class="rs" aria-label="Rating for ${esc(x.name)}"><option value="">Not rated</option>${RATINGS.map(r=>`<option${x.rating===r?" selected":""}>${r}</option>`).join("")}</select></span><span class="x"><button class="rm" aria-label="Remove ${esc(x.name)}">Remove</button></span></div>`;
     }else{
-      h+=`<div class="row"><span class="no">${x.id}</span><span class="nm">${esc(x.name)}</span>
+      h+=`<div class="row"><span class="no">${data.members.indexOf(x)+1}</span><span class="nm">${esc(x.name)}</span>
       <span class="am">${x.amount!=null&&x.amount!==""?fmt(x.amount):"–"}</span>
       <span class="st"><span class="pill ${paid?"paid":"unpaid"}">${paid?"Paid":"Not paid"}</span></span>
       <span class="rt">${esc(x.rating||"Not rated")}</span></div>`;
     }
   }
-  h+=`<div class="row foot"><span></span><span class="nm">Total of all ${data.members.length} members</span><span class="am" id="ftot">${fmt(total())}</span><span class="st"></span><span class="rt"></span></div>`;
+  h+=`<div class="row foot"><span></span><span class="nm">Total of all ${data.members.length} members</span><span class="am" id="ftot">${fmt(total())}</span><span class="st"></span><span class="rt"></span>${ad?'<span class="x"></span>':""}</div>`;
   $("list").innerHTML=h;
 }
 
@@ -203,6 +221,32 @@ $("list").addEventListener("input",e=>{
   else if(e.target.classList.contains("rs"))m.rating=e.target.value;
   mark();
 });
+$("expslot").addEventListener("input",e=>{if(e.target.id==="expin"){data.expenditure=e.target.value===""?0:Math.max(0,Number(e.target.value));mark()}});
+$("list").addEventListener("click",e=>{
+  const b=e.target.closest(".rm");if(!b)return;
+  const id=b.closest(".row").dataset.id,m=data.members.find(x=>x.id==id);
+  if(!m||!confirm("Remove "+m.name+" from the list?"))return;
+  data.members=data.members.filter(x=>x.id!=id);mark();render();
+});
+$("exportBtn").onclick=()=>{
+  const q=v=>typeof v==="number"?v:'"'+String(v).replace(/"/g,'""')+'"';
+  const m=data.members,all=total(),got=m.filter(x=>x.status==="Paid").reduce((s,x)=>s+(Number(x.amount)||0),0),ex=Number(data.expenditure)||0;
+  const rows=[["#","Name","Amount (GHS)","Status","Payment rating"],...m.map((x,i)=>[i+1,x.name,x.amount??"",x.status,x.rating||"Not rated"]),[],["","Total of all members",all],["","Collected (paid)",got],["","Total expenditure",ex],["","Balance (collected minus expenditure)",got-ex]];
+  const csv="\ufeff"+rows.map(r=>r.map(q).join(",")).join("\r\n");
+  const a=document.createElement("a");
+  a.href=URL.createObjectURL(new Blob([csv],{type:"text/csv;charset=utf-8"}));
+  a.download="rocky-course-ii-contributions-"+new Date().toISOString().slice(0,10)+".csv";a.click();
+};
+$("addbtn").onclick=()=>{
+  const n=$("newname").value.replace(/\s+/g," ").trim();
+  if(!n){$("newname").focus();return}
+  if(data.members.some(x=>x.name.toLowerCase()===n.toLowerCase())){alert(n+" is already on the list.");return}
+  data.members.push({id:data.members.reduce((a,x)=>Math.max(a,x.id),0)+1,name:n,amount:null,status:"Not paid",rating:""});
+  $("newname").value="";$("q").value=n;filter="all";
+  [...$("chips").children].forEach((c,i)=>c.setAttribute("aria-pressed",i===0));
+  mark();render();
+};
+$("newname").addEventListener("keydown",e=>{if(e.key==="Enter")$("addbtn").click()});
 $("q").addEventListener("input",render);
 $("chips").addEventListener("click",e=>{
   const b=e.target.closest("button");if(!b)return;filter=b.dataset.f;
