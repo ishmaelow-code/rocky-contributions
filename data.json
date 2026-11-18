@@ -1,6 +1,6 @@
 {
  "title": "Rocky Course II",
- "updated": "2026-11-18T12:21:10.283Z",
+ "updated": "2026-11-18T13:54:36.322Z",
  "members": [
   {
    "id": 1,
@@ -505,6 +505,13 @@
    "amount": null,
    "status": "Not paid",
    "rating": "Very Poor"
+  },
+  {
+   "id": 73,
+   "name": "Kwarko Michael",
+   "amount": 100,
+   "status": "Paid",
+   "rating": "Below Average / Fair"
   }
  ]
 }
