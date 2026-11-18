@@ -1,6 +1,6 @@
 {
  "title": "Rocky Course II",
- "updated": "2026-11-18T17:17:08.268Z",
+ "updated": "2026-11-18T17:21:13.334Z",
  "members": [
   {
    "id": 1,
@@ -327,8 +327,8 @@
   {
    "id": 47,
    "name": "Haford Sampah",
-   "amount": 100,
-   "status": "Paid",
+   "amount": null,
+   "status": "Not paid",
    "rating": "Exceptional / Top Tier"
   },
   {
