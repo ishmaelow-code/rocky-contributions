@@ -1,6 +1,6 @@
 {
  "title": "Rocky Course II",
- "updated": "2026-11-18T17:14:41.879Z",
+ "updated": "2026-11-18T17:17:08.268Z",
  "members": [
   {
    "id": 1,
@@ -575,6 +575,13 @@
    "amount": 100,
    "status": "Paid",
    "rating": "Exceptional / Top Tier"
+  },
+  {
+   "id": 83,
+   "name": "Joseph Alafisah",
+   "amount": null,
+   "status": "Not paid",
+   "rating": "Very Good"
   }
  ],
  "expenditure": 3018
