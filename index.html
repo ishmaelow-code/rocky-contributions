@@ -52,11 +52,12 @@ footer{color:var(--mute);font-size:.85rem;margin:16px 0}
 .save .msg{flex:1}
 .btn{padding:10px 16px;border-radius:10px;border:0;background:var(--gold);color:#241a00;font-weight:700;cursor:pointer}
 .btn.alt{background:transparent;color:#fff;border:1.5px solid #ffffff66}
-dialog{border:0;border-radius:14px;padding:22px;max-width:420px;width:calc(100% - 32px)}
-dialog::backdrop{background:#0008}
-dialog label{display:block;font-size:.88rem;color:var(--mute);margin:12px 0 4px}
-dialog input{width:100%;padding:10px;border:1.5px solid var(--line);border-radius:8px}
-dialog p{font-size:.88rem;color:var(--mute)}
+.ov{position:fixed;inset:0;background:#0008;display:flex;align-items:center;justify-content:center;z-index:10;padding:16px}
+.ov[hidden]{display:none}
+.box{background:#fff;border-radius:14px;padding:22px;max-width:420px;width:100%}
+.box label{display:block;font-size:.88rem;color:var(--mute);margin:12px 0 4px}
+.box input{width:100%;padding:10px;border:1.5px solid var(--line);border-radius:8px}
+.box p{font-size:.88rem;color:var(--mute)}
 .adminbadge{background:var(--gold);color:#241a00;border-radius:6px;padding:1px 8px;font-size:.8rem;font-weight:700}
 @media(max-width:700px){
  .row{grid-template-columns:1.8rem 1fr auto;grid-template-areas:"n m s" ". a r"}
@@ -75,7 +76,7 @@ dialog p{font-size:.88rem;color:var(--mute)}
 <div class="wrap">
  <header>
   <h1>Rocky Course II</h1>
-  <p class="sub">Voluntary contribution tracker <span id="adm"></span></p>
+  <p class="sub">Voluntary contribution tracker <span id="adm"></span> <button class="link" id="adminTop">Admin</button></p>
   <div class="stats">
    <div><b id="exp">GHS 0</b><span>total to be contributed</span></div>
    <div><b id="tot">GHS 0</b><span>collected (paid)</span></div>
@@ -103,23 +104,25 @@ dialog p{font-size:.88rem;color:var(--mute)}
  <button class="btn" id="go">Save to GitHub</button>
 </div></div>
 
-<dialog id="dlg">
+<div id="dlg" class="ov" hidden><div class="box">
  <h2 style="margin:0 0 4px">Admin sign-in</h2>
  <p>Only the group admin needs this. The token stays in this browser and is never shown to members.</p>
  <label for="repo">GitHub repository (owner/name)</label><input id="repo" placeholder="your-username/rocky-contributions">
  <label for="tok">Personal access token</label><input id="tok" type="password" autocomplete="off" placeholder="github_pat_…">
  <div style="display:flex;gap:8px;margin-top:16px;justify-content:flex-end">
+  <button class="btn alt" style="color:var(--ink);border-color:var(--line)" id="cancel">Close</button>
   <button class="btn alt" style="color:var(--ink);border-color:var(--line)" id="out">Sign out</button>
   <button class="btn" id="in">Sign in</button>
  </div>
-</dialog>
+</div></div>
 
 <script>
 const RATINGS=["Very Poor","Below Average / Fair","Average / Good","Very Good","Exceptional / Top Tier"];
 const PATH="data.json", BRANCH="main";
-let cfg=detect(), data={members:[]}, filter="all", dirty=false;
+let cfg="", data={members:[]}, filter="all", dirty=false;
 const $=id=>document.getElementById(id);
 const store={get:k=>{try{return localStorage.getItem(k)}catch(e){return null}},set:(k,v)=>{try{localStorage.setItem(k,v)}catch(e){}},del:k=>{try{localStorage.removeItem(k)}catch(e){}}};
+cfg=detect();
 const token=()=>store.get("rk_token"), isAdmin=()=>!!token();
 const esc=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
 const fmt=n=>"GHS "+Number(n).toLocaleString("en-GH");
@@ -207,15 +210,16 @@ $("chips").addEventListener("click",e=>{
 });
 $("blocks").addEventListener("click",e=>{const n=e.target.dataset.n;if(n){$("q").value=n;filter="all";render();$("list").scrollIntoView({behavior:"smooth"})}});
 
-$("adminBtn").onclick=()=>{$("repo").value=cfg;$("tok").value="";$("dlg").showModal()};
+$("adminBtn").onclick=$("adminTop").onclick=()=>{$("repo").value=cfg;$("tok").value="";$("dlg").hidden=false};
 $("in").onclick=async()=>{
   const r=$("repo").value.trim(),t=$("tok").value.trim();
   if(!r.includes("/")||!t){alert("Enter the repository (owner/name) and your token.");return}
   const ok=await fetch(`https://api.github.com/repos/${r}`,{headers:{Authorization:"Bearer "+t}}).then(x=>x.ok).catch(()=>false);
   if(!ok){alert("GitHub rejected the token or repository name. Please check both.");return}
-  store.set("rk_token",t);store.set("rk_repo",r);cfg=r;$("dlg").close();await load();
+  store.set("rk_token",t);store.set("rk_repo",r);cfg=r;$("dlg").hidden=true;await load();
 };
-$("out").onclick=()=>{store.del("rk_token");$("dlg").close();$("save").classList.remove("on");dirty=false;load()};
+$("cancel").onclick=()=>{$("dlg").hidden=true};
+$("out").onclick=()=>{store.del("rk_token");$("dlg").hidden=true;$("save").classList.remove("on");dirty=false;load()};
 
 $("dl").onclick=()=>{
   const a=document.createElement("a");
