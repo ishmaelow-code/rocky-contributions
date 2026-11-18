@@ -1,6 +1,6 @@
 {
  "title": "Rocky Course II",
- "updated": "2026-11-18T15:23:07.154Z",
+ "updated": "2026-11-18T17:14:41.879Z",
  "members": [
   {
    "id": 1,
@@ -568,6 +568,13 @@
    "amount": null,
    "status": "Not paid",
    "rating": "Very Poor"
+  },
+  {
+   "id": 82,
+   "name": "Barbara Nimo",
+   "amount": 100,
+   "status": "Paid",
+   "rating": "Exceptional / Top Tier"
   }
  ],
  "expenditure": 3018
