@@ -1,6 +1,6 @@
 {
  "title": "Rocky Course II",
- "updated": "2026-11-18T17:21:13.334Z",
+ "updated": "2026-11-18T17:29:42.834Z",
  "members": [
   {
    "id": 1,
@@ -582,6 +582,13 @@
    "amount": null,
    "status": "Not paid",
    "rating": "Very Good"
+  },
+  {
+   "id": 84,
+   "name": "Eric K. Boakye",
+   "amount": null,
+   "status": "Not paid",
+   "rating": "Very Poor"
   }
  ],
  "expenditure": 3018
