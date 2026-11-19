@@ -1,6 +1,6 @@
 {
  "title": "Rocky Course II",
- "updated": "2026-11-19T09:58:39.578Z",
+ "updated": "2026-11-19T12:09:56.952Z",
  "members": [
   {
    "id": 1,
@@ -481,8 +481,8 @@
   {
    "id": 69,
    "name": "Osei Kwasi Prince",
-   "amount": null,
-   "status": "Not paid",
+   "amount": 100,
+   "status": "Paid",
    "rating": "Exceptional / Top Tier"
   },
   {
