@@ -1,6 +1,6 @@
 {
  "title": "Rocky Course II",
- "updated": "2026-11-19T04:22:30.791Z",
+ "updated": "2026-11-19T04:26:33.110Z",
  "members": [
   {
    "id": 1,
@@ -596,6 +596,13 @@
    "amount": null,
    "status": "Not paid",
    "rating": "Very Poor"
+  },
+  {
+   "id": 86,
+   "name": "Solomon Lomotey",
+   "amount": null,
+   "status": "Not paid",
+   "rating": "Average / Good"
   }
  ],
  "expenditure": 3018
