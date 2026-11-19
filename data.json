@@ -1,6 +1,6 @@
 {
  "title": "Rocky Course II",
- "updated": "2026-11-19T04:41:34.170Z",
+ "updated": "2026-11-19T04:50:24.084Z",
  "members": [
   {
    "id": 1,
@@ -496,7 +496,7 @@
    "id": 71,
    "name": "Samuel Ndego",
    "amount": null,
-   "status": "Paid",
+   "status": "Not paid",
    "rating": "Below Average / Fair"
   },
   {
