@@ -1,6 +1,6 @@
 {
  "title": "Rocky Course II",
- "updated": "2026-11-19T04:26:33.110Z",
+ "updated": "2026-11-19T04:33:49.733Z",
  "members": [
   {
    "id": 1,
@@ -603,6 +603,13 @@
    "amount": null,
    "status": "Not paid",
    "rating": "Average / Good"
+  },
+  {
+   "id": 87,
+   "name": "Solomon Dakwah",
+   "amount": null,
+   "status": "Not paid",
+   "rating": "Below Average / Fair"
   }
  ],
  "expenditure": 3018
