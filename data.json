@@ -1,6 +1,6 @@
 {
  "title": "Rocky Course II",
- "updated": "2026-11-18T19:36:12.670Z",
+ "updated": "2026-11-19T04:22:30.791Z",
  "members": [
   {
    "id": 1,
@@ -586,6 +586,13 @@
   {
    "id": 84,
    "name": "Eric K. Boakye",
+   "amount": null,
+   "status": "Not paid",
+   "rating": "Very Poor"
+  },
+  {
+   "id": 85,
+   "name": "Ursula Osei",
    "amount": null,
    "status": "Not paid",
    "rating": "Very Poor"
