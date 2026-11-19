@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
+<meta name="color-scheme" content="light dark">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Rocky Course II · Voluntary Contributions</title>
 <meta property="og:title" content="Rocky Course II – Contribution Tracker">
@@ -9,7 +10,8 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;600;800&display=swap" rel="stylesheet">
 <style>
-:root{--ink:#10261f;--mute:#5b6e66;--line:#d9e2dd;--bg:#f2f5f3;--card:#fff;--green:#0e5a43;--gold:#e3a72f;--red:#b4402f;--paid:#dff1e6;--unpaid:#f8e4df}
+:root{--ink:#10261f;--mute:#5b6e66;--line:#d9e2dd;--bg:#f2f5f3;--card:#fff;--green:#0e5a43;--gold:#e3a72f;--red:#b4402f;--paid:#dff1e6;--unpaid:#f8e4df;--head:#f8faf9;--block:#cfd9d4;--btn:#0e5a43;--rmb:#e7c3bb;--bar:#10261f;color-scheme:light dark}
+@media(prefers-color-scheme:dark){:root{--ink:#e6efea;--mute:#9db1a8;--line:#2c3f37;--bg:#0e1814;--card:#16231e;--green:#5fd0a0;--red:#f0917f;--paid:#1b3a2e;--unpaid:#3d2520;--head:#1b2b25;--block:#2f4239;--btn:#1f7a5c;--rmb:#6a3b31;--bar:#223730}}
 *{box-sizing:border-box}
 body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.45 "Schibsted Grotesk",system-ui,sans-serif;padding:env(safe-area-inset-top) 0 90px}
 .wrap{max-width:860px;margin:0 auto;padding:0 16px}
@@ -20,9 +22,8 @@ h1{font-size:clamp(2rem,7vw,3.2rem);line-height:1;margin:0;font-weight:800;lette
 .stats b{display:block;font-size:1.9rem;font-weight:800;letter-spacing:-.02em;line-height:1.1}
 .stats span{color:var(--mute);font-size:.9rem}
 .blocks{display:flex;flex-wrap:wrap;gap:4px;margin-bottom:6px}
-.blocks i{width:calc((100% - 4*35px)/36);min-width:14px;flex:1 0 14px;max-width:22px;height:22px;border-radius:4px;background:#cfd9d4;cursor:pointer}
+.blocks i{width:calc((100% - 4*35px)/36);min-width:14px;flex:1 0 14px;max-width:22px;height:22px;border-radius:4px;background:var(--block);cursor:pointer}
 .blocks i.p{background:var(--gold)}
- .blocks,.legend{display:none}
 .legend{font-size:.82rem;color:var(--mute);margin-bottom:18px}
 .bar{display:flex;gap:8px;flex-wrap:wrap;position:sticky;top:0;background:var(--bg);padding:10px 0;z-index:3}
 input,select,button{font:inherit;color:inherit}
@@ -30,31 +31,31 @@ input,select,button{font:inherit;color:inherit}
 #q:focus,select:focus,.amt:focus,button:focus-visible{outline:3px solid var(--gold);outline-offset:1px}
 .chips{display:flex;gap:6px}
 .chips button{padding:10px 14px;border:1.5px solid var(--line);border-radius:10px;background:var(--card);cursor:pointer}
-.chips button[aria-pressed=true]{background:var(--green);border-color:var(--green);color:#fff}
+.chips button[aria-pressed=true]{background:var(--btn);border-color:var(--btn);color:#fff}
 .list{background:var(--card);border:1px solid var(--line);border-radius:14px;overflow:hidden}
 .row{display:grid;grid-template-columns:2.2rem 1fr 110px 110px 190px;gap:10px;align-items:center;padding:11px 14px;border-top:1px solid var(--line)}
 .row:first-child{border-top:0}
-.row.head{font-size:.85rem;color:var(--mute);background:#f8faf9;font-weight:600}
+.row.head{font-size:.85rem;color:var(--mute);background:var(--head);font-weight:600}
 .no{color:var(--mute);font-variant-numeric:tabular-nums}
 .nm{font-weight:600}
 .pill{display:inline-block;padding:3px 11px;border-radius:99px;font-size:.88rem;font-weight:600}
 .pill.paid{background:var(--paid);color:var(--green)}
 .pill.unpaid{background:var(--unpaid);color:var(--red)}
 .rt{color:var(--mute);font-size:.92rem}
-select,.amt{width:100%;padding:8px;border:1.5px solid var(--line);border-radius:8px;background:#fff}
-.chipbtn{padding:10px 14px;border:1.5px solid var(--green);border-radius:10px;background:#fff;color:var(--green);font-weight:600;cursor:pointer}
-.expin{width:9.5rem;font:inherit;font-size:1.5rem;font-weight:800;padding:1px 6px;border:1.5px solid var(--gold);border-radius:8px;background:#fff}
-.rm{padding:6px 10px;border:1.5px solid #e7c3bb;background:#fff;color:var(--red);border-radius:8px;cursor:pointer;font-weight:600}
+select,.amt{width:100%;padding:8px;border:1.5px solid var(--line);border-radius:8px;background:var(--card)}
+.chipbtn{padding:10px 14px;border:1.5px solid var(--green);border-radius:10px;background:var(--card);color:var(--green);font-weight:600;cursor:pointer}
+.expin{width:9.5rem;font:inherit;font-size:1.5rem;font-weight:800;padding:1px 6px;border:1.5px solid var(--gold);border-radius:8px;background:var(--card)}
+.rm{padding:6px 10px;border:1.5px solid var(--rmb);background:var(--card);color:var(--red);border-radius:8px;cursor:pointer;font-weight:600}
 .edit .row{grid-template-columns:2.2rem 1fr 110px 110px 190px 84px}
 .addbar{display:flex;gap:8px;margin:0 0 10px}
-.addbar input{flex:1;padding:11px 14px;border:1.5px solid var(--line);border-radius:10px;background:#fff}
+.addbar input{flex:1;padding:11px 14px;border:1.5px solid var(--line);border-radius:10px;background:var(--card)}
 .addbar[hidden]{display:none}
-.row.foot{background:#f8faf9;border-top:2px solid var(--ink);font-weight:800}
+.row.foot{background:var(--head);border-top:2px solid var(--ink);font-weight:800}
 .row.foot .am{font-variant-numeric:tabular-nums}
 .empty{padding:28px;text-align:center;color:var(--mute)}
 footer{color:var(--mute);font-size:.85rem;margin:16px 0}
 .link{background:none;border:0;color:var(--green);text-decoration:underline;cursor:pointer;padding:0}
-.save{position:fixed;left:0;right:0;bottom:0;background:var(--ink);color:#fff;padding:12px 16px calc(12px + env(safe-area-inset-bottom));display:none;z-index:5}
+.save{position:fixed;left:0;right:0;bottom:0;background:var(--bar);color:#fff;padding:12px 16px calc(12px + env(safe-area-inset-bottom));display:none;z-index:5}
 .save.on{display:block}
 .save .in{max-width:860px;margin:0 auto;display:flex;gap:10px;align-items:center;flex-wrap:wrap}
 .save .msg{flex:1}
@@ -62,9 +63,9 @@ footer{color:var(--mute);font-size:.85rem;margin:16px 0}
 .btn.alt{background:transparent;color:#fff;border:1.5px solid #ffffff66}
 .ov{position:fixed;inset:0;background:#0008;display:flex;align-items:center;justify-content:center;z-index:10;padding:16px}
 .ov[hidden]{display:none}
-.box{background:#fff;border-radius:14px;padding:22px;max-width:420px;width:100%}
+.box{background:var(--card);border-radius:14px;padding:22px;max-width:420px;width:100%}
 .box label{display:block;font-size:.88rem;color:var(--mute);margin:12px 0 4px}
-.box input{width:100%;padding:10px;border:1.5px solid var(--line);border-radius:8px}
+.box input{width:100%;padding:10px;border:1.5px solid var(--line);border-radius:8px;background:var(--card)}
 .box p{font-size:.88rem;color:var(--mute)}
 .adminbadge{background:var(--gold);color:#241a00;border-radius:6px;padding:1px 8px;font-size:.8rem;font-weight:700}
 @media(max-width:700px){
@@ -88,10 +89,10 @@ footer{color:var(--mute);font-size:.85rem;margin:16px 0}
   <h1>Rocky Course II</h1>
   <p class="sub">Voluntary contribution tracker <span id="adm"></span> <button class="link" id="adminTop">Admin</button></p>
   <div class="stats">
-   <div><div id="expslot"></div><span>Total Expenditure</span></div>
-   <div><b id="tot">GHS 0</b><span>Collected (paid)</span></div>
-   <div><b id="out2">GHS 0</b><span>Still outstanding</span></div>
-   <div><b id="bal">GHS 0</b><span>Balance (collected − expenditure)</span></div>
+   <div><div id="expslot"></div><span>total expenditure</span></div>
+   <div><b id="tot">GHS 0</b><span>collected (paid)</span></div>
+   <div><b id="out2">GHS 0</b><span>still outstanding</span></div>
+   <div><b id="bal">GHS 0</b><span>balance (collected − expenditure)</span></div>
    <div><b id="cnt">0 of 0</b><span>members have paid</span></div>
   </div>
   <div class="blocks" id="blocks" aria-label="One block per member; gold means paid"></div>
@@ -108,7 +109,7 @@ footer{color:var(--mute);font-size:.85rem;margin:16px 0}
  </div>
  <div class="addbar" id="addbar" hidden>
   <input id="newname" placeholder="New member's full name" aria-label="New member name" autocomplete="off">
-  <button class="btn" id="addbtn" style="background:var(--green);color:#fff">+ Add member</button>
+  <button class="btn" id="addbtn" style="background:var(--btn);color:#fff">+ Add member</button>
   <button class="rm" id="resetBtn" title="Clear all amounts for a new round of contributions">Start new round</button>
  </div>
  <div class="list" id="list" aria-live="polite"></div>
