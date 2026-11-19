@@ -1,6 +1,6 @@
 {
  "title": "Rocky Course II",
- "updated": "2026-11-19T06:49:00.869Z",
+ "updated": "2026-11-19T09:57:38.243Z",
  "members": [
   {
    "id": 1,
@@ -110,7 +110,7 @@
   {
    "id": 16,
    "name": "Francis Agbedor",
-   "amount": null,
+   "amount": 100,
    "status": "Not paid",
    "rating": "Very Poor"
   },
