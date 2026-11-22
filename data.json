@@ -1,6 +1,6 @@
 {
  "title": "Rocky Course II",
- "updated": "2026-11-19T12:09:56.952Z",
+ "updated": "2026-11-22T08:48:05.110Z",
  "members": [
   {
    "id": 1,
@@ -518,14 +518,14 @@
    "name": "Lawson Lartey",
    "amount": null,
    "status": "Not paid",
-   "rating": ""
+   "rating": "Very Poor"
   },
   {
    "id": 75,
    "name": "Baba Yakubu",
    "amount": null,
    "status": "Not paid",
-   "rating": ""
+   "rating": "Very Poor"
   },
   {
    "id": 76,
@@ -539,14 +539,14 @@
    "name": "Kombian Naanpaak",
    "amount": null,
    "status": "Not paid",
-   "rating": ""
+   "rating": "Very Poor"
   },
   {
    "id": 78,
    "name": "Kumi Kwasi",
    "amount": null,
    "status": "Not paid",
-   "rating": ""
+   "rating": "Very Poor"
   },
   {
    "id": 79,
