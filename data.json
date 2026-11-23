@@ -1,6 +1,6 @@
 {
  "title": "Rocky Course II",
- "updated": "2026-11-22T08:48:05.110Z",
+ "updated": "2026-11-23T10:25:08.669Z",
  "members": [
   {
    "id": 1,
@@ -612,5 +612,6 @@
    "rating": "Below Average / Fair"
   }
  ],
- "expenditure": 3018
+ "expenditure": 3018,
+ "bf": 1810
 }
