@@ -1,6 +1,6 @@
 {
  "title": "Rocky Course II",
- "updated": "2026-11-23T10:25:08.669Z",
+ "updated": "2026-11-25T08:21:06.051Z",
  "members": [
   {
    "id": 1,
@@ -390,8 +390,8 @@
   {
    "id": 56,
    "name": "Victoria Adwoa Welaga",
-   "amount": null,
-   "status": "Not paid",
+   "amount": 100,
+   "status": "Paid",
    "rating": "Below Average / Fair"
   },
   {
